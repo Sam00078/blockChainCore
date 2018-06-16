@@ -6,6 +6,10 @@ module.exports = app => {
             http: 9693,
         },
 
+        worker: {
+            //enabled: true, // 是否使用子线程模式，默认开启
+            num: 4
+        }
 
 
 
