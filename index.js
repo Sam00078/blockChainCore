@@ -4,17 +4,15 @@
 
 
 // local  dev  test  beta  production
-global.OKGO_ENV = 'local';
+global.OKGO_ENV = 'local'
 
 
 // app load folder info
 global.OKGO_APPLOAD = [
-    {
-        folder: 'blockChainCore',
-    } 
+    { folder: 'blockChainCore', }, 
 ];
 
 
 // start the world !
-// require('okgo').start();
-require('../okgo').start(); // dev test
+// require('okgo')( {}, app => {})
+require('../okgo')( {}, app => {}) // dev test

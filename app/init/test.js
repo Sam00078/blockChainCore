@@ -1,5 +1,59 @@
 
-module.exports = appInfo => {
+module.exports = async app => {
+
+
+
+
+
+    // app.core.peer.amt.cancel('searchPossibleNodes', {id:'readconfig',type:'it'})
+    // app.core.peer.amt.cancel('searchPossibleNodes', 'readconfig')
+
+
+
+    app.core.peer.amt.wrap('--searchPossibleNodes', (a, r, next)=>{
+
+        app.log.debug('wrap 1')
+
+        next()
+
+    }, (a, r, next)=>{
+
+        app.log.debug('wrap 2')
+
+        next()
+
+
+    })
+
+/*
+
+    function f1(n){
+        return new Promise(function(ok){
+            setTimeout(function(){
+                ok(n+1)
+            }, 1000)
+        })
+    }
+
+    async function f2(n){
+        let m = await f1(n)
+        return m + 1
+    }
+
+    async function f3(n){
+        let m = await f2(n)
+        return m + 1
+    }
+
+
+    let k = await f3(10)
+    app.log.fatal(k)
+
+*/
+
+
+
+
 
 
 

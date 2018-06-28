@@ -1,9 +1,0 @@
-{
-    "load_order": {
-        "init": [
-            "boot/",
-            "base/",
-            "core/"
-        ]
-    }
-}

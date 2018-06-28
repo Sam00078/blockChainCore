@@ -1,0 +1,21 @@
+# Logs
+*.log
+
+# Shell
+*.sh
+
+.git
+.npm
+
+.gitignore
+.npmignore
+
+node_modules/
+
+
+# IDE
+.idea/
+.vscode/
+
+
+package-lock.json
