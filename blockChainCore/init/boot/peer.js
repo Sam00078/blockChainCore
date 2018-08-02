@@ -17,7 +17,7 @@ module.exports = app => {
 
 
 
-    app.core.peer.bus.obtain('setPeerNodes', function(list){
+    app.core.bcc.peer.bus.obtain('setPeerNodes', function(list){
         if (!list || !list.length){
             app.log.care(`set peer nodes empty list !`)
         }else{
@@ -31,9 +31,9 @@ module.exports = app => {
     // 获取可用节点
     const flowNameSPN = 'searchPossibleNodes'
 
-    app.core.peer.amt.it(flowNameSPN, {
+    app.core.bcc.peer.amt.it(flowNameSPN, {
         id: 'readconfig'
-    }, function(argv, result, next){
+    }, function(argv, next){
         // app.log.info('searchPossibleNode it!')
         next(null, app.configRead('peer.possibleNodes')||[])
     })
@@ -46,18 +46,21 @@ module.exports = app => {
     app.launch.ready(function(){
 
         app.log.info(`ready to do ${flowNameSPN}`)
-        app.core.peer.amt.runFlow(flowNameSPN, null, {
+        app.core.bcc.peer.amt.runFlow(flowNameSPN, null, {
             limit: 20
         }, function(err, result){
             if(err){
                 app.log.care(`do flow '${flowNameSPN}' error: ` + err)
                 return
             }
-            app.core.peer.nodes = result
+            app.core.bcc.peer.nodes = result
         })
     })
 
-/*
+
+
+    
+    /*
 
     app.core.peer.amt.runFlow('kgkgkgkgkg', {
         'after': ['kkkf', 'fffk']
@@ -91,7 +94,7 @@ module.exports = app => {
         app.log.error('kkkf------')
     })
 
-*/
+    */
 
 
 

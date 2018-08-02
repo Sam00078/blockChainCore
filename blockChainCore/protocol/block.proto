@@ -1,0 +1,29 @@
+
+
+
+message Block {
+
+
+  repeated Transaction transactions = 1;
+
+}
+
+
+
+message Transaction {
+
+
+  repeated Asset assets = 1;
+}
+
+
+
+message Asset {
+
+  required int32 type = 1;
+
+
+
+  
+
+}

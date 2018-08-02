@@ -1,5 +1,5 @@
 
-module.exports = appInfo => {
+module.exports = app => {
 
 
 

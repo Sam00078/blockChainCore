@@ -1,12 +1,15 @@
 {
     "name": "blockChainCore",
     "dependencies": {
-        "colors": "~1.2.5"
+        "bitcoinjs-lib": "3.3.2",
+        "secp256k1": "3.5.0"
     },
-
-
     "okgo": {
         "load_order": {
+            "core": [
+                "core",
+                "paramate/"
+            ],
             "init": [
                 "boot/",
                 "base/",
@@ -14,6 +17,4 @@
             ]
         }
     }
-
-    
 }

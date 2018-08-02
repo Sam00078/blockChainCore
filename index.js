@@ -12,6 +12,8 @@ global.OKGO_APPLOAD = [
     { folder: 'blockChainCore', }, 
 ];
 
+// global.OKGO_LOAD_PROCESS = true
+
 
 // start the world !
 // require('okgo')( {}, app => {})

@@ -5,10 +5,52 @@ module.exports = async app => {
 
 
 
+    // app.core.bcc.account.amt.hook('hashForSign', {id: 'yangjie'}, function(argv, next, breakdown){
+
+    //     app.log.warn('hashForSign hook')
+
+    //     next(null, 'yangjir123')
+
+    //     // 截断执行流 抛出数据
+    //     // breakdown('123')
+
+    // })
+
+    // app.core.bcc.account.amt.tail('hashForSign', function(argv, next){
+
+    //     app.log.warn('hashForSign tail')
+    //     app.log.warn(argv)
+
+    //     next()
+    // })
+
+
+
+
+
+
+
+
+
+    /**
+     * 启动 所有 测试
+     */
+
+    await require("../../test/index.js")(app, ['paramate'])
+
+
+
+
+
+
+    // app.log.debug( app.core.bcc.account )
+
+
     // app.core.peer.amt.cancel('searchPossibleNodes', {id:'readconfig',type:'it'})
     // app.core.peer.amt.cancel('searchPossibleNodes', 'readconfig')
 
 
+    /*
 
     app.core.peer.amt.wrap('--searchPossibleNodes', (a, r, next)=>{
 
@@ -25,7 +67,11 @@ module.exports = async app => {
 
     })
 
-/*
+
+    */
+
+
+    /*
 
     function f1(n){
         return new Promise(function(ok){
@@ -49,7 +95,7 @@ module.exports = async app => {
     let k = await f3(10)
     app.log.fatal(k)
 
-*/
+    */
 
 
 

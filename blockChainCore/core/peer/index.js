@@ -5,8 +5,8 @@ module.exports = app => {
     {
         constructor () {
 
-            this.bus = new app.MessageBus() // 消息系统
-            this.amt = new app.FlowMount() // 挂载系统
+            this.bus = new app.okgo.MessageBus() // 消息系统
+            this.amt = new app.okgo.FlowMount() // 挂载系统
 
             this.possibleNodes = [] // {ip,port} 可用的节点
 
@@ -23,22 +23,28 @@ module.exports = app => {
             return this.possibleNodes
         }
 
-
-
-
-
-
-
-
+        
 
     }
 
 
 
+    // 注册
+    app.core.bcc.peer = new Peer()
+
+
+    //////////////////// 加载相关核心 ////////////////////
+
+
+    app.core.bcc.help.loadingCoreModels('peer', [
+        // 'create',
+        // 'verify',
+        // 'signature',
+    ])
 
 
 
-    app.core.peer = new Peer()
+
 
 
 }
