@@ -14,7 +14,7 @@ module.exports = async app => {
 
     generate_block = app.constant.bcc.generate_block
     // LOG(generate_block)
-    LOG( util.inspect( generate_block , { depth: null }))
+    // LOG( util.inspect( generate_block , { depth: null }))
 
     // 测试创世区块的打包和解包
     let generate_block_buffer = await transport.packBlock( generate_block )
@@ -22,7 +22,7 @@ module.exports = async app => {
     // LOG(generate_block_buffer.length)
 
     let generate_block_unpack = await transport.unpackBlock( generate_block_buffer )
-    // let json_str = JSON.stringify( generate_block_unpack )
+    let json_str = JSON.stringify( generate_block_unpack )
     // LOG( json_str )
     // LOG( json_str.length )
     // LOG( generate_block_unpack )
