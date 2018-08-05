@@ -36,7 +36,7 @@ module.exports = async app => {
      * 启动 所有 测试
      */
 
-    await require("../../test/index.js")(app, ['paramate'])
+    await require("../../test/index.js")( app , ['transport'] )
 
 
 

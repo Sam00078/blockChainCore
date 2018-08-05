@@ -15,7 +15,7 @@ module.exports = app => {
 
     // block chain core
     app.core.bcc = {
-        paramate: {},
+        parameta: {},
         peer: {},
         connect: {},
         transmission: {},

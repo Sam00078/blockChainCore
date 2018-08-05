@@ -1,16 +1,13 @@
 /**
- * 数据格式验证
+ * 区块数据格式
  */
-
-
-const util = require("util")
-
 
 
 module.exports = app => {
 
-    // 创建数据检查服务
-    const pm = app.core.bcc.paramate = app.paramate.createInstance()
+
+
+    const pm = app.core.bcc.parameta
 
 
     /**
@@ -53,15 +50,6 @@ module.exports = app => {
             "transactions": {
                 type: '[Transaction<type>]',
                 fixed: 6,
-                element: {
-                    type: '{}',
-                    properties: {
-                        "type": {
-                            type: "Uint8",
-                            enumeration: [0, 1], // 目前仅支持两种交易类型
-                        }
-                    }
-                },
                 minlen: 1,
                 maxlen: 65535,
             }
@@ -75,16 +63,22 @@ module.exports = app => {
     // 交易类型基础定义
     const transaction_properties_boot = {
 
+        "type": {
+            type: 'Uint8',
+            enumeration: [0, 1], // 目前仅支持两种交易类型
+            fixed: 1,
+        },
+
         "time": {
             type: 'Uint32',
             maxval: app.constant.bcc.core.uint32_max_value,
-            fixed: 1,
+            fixed: 2,
         },
 
         "signs": {
             type:'[Sign]',
             minlen: 1,
-            fixed: 2,
+            fixed: 3,
         },
 
     }
@@ -254,6 +248,3 @@ module.exports = app => {
 
 
 }
-
-
-

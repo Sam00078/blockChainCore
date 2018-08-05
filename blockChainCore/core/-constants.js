@@ -24,9 +24,13 @@ module.exports = {
         consensusGetBlockSlot: 'getBlockSlot',
         // reward 奖励机制
         rewardGetBlockCoinbaseByHeight: 'getBlockCoinbaseByHeight', // 计算获取区块奖励
-        
         // asset 资产
         assetRegisterTypeHandle: 'registerTypeHandle', // 注册处理资产类型
+        // transport 数据传输
+        transportPackBlock: 'packBlock', // 打包区块数据
+        transportPackTransaction: 'packTransaction', // 打包交易
+        transportUnpackBlock: 'unpackBlock', // 解包区块
+        transportUnpackTransaction: 'unpackTransaction', // 交易解包
         
 
     },

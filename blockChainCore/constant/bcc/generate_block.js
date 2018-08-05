@@ -256,9 +256,9 @@ const PredefinitionBlockFormat = {
 
 module.exports = {
     version: 1,
-    hash: Buffer.from("0000000000000000000000000000000000000000000000000000000000000000", 'hex'),
-    prevBlock: Buffer.from("0000000000000000000000000000000000000000000000000000000000000000", 'hex'),
-    mrklRoot: Buffer.from("0000000000000000000000000000000000000000000000000000000000000000", 'hex'),
+    hash: Buffer.from("03950954c4c5cf11ee1e1f08269efe13dc6e3af754e082b539f5ad2437811800", 'hex'),
+    prevBlock: Buffer.from("03950954c4c5cf11ee1e1f08269efe13dc6e3af754e082b539f5ad2437811800", 'hex'),
+    mrklRoot: Buffer.from("03950954c4c5cf11ee1e1f08269efe13dc6e3af754e082b539f5ad2437811800", 'hex'),
     height: 0,
     transactions: [
         {
@@ -266,7 +266,7 @@ module.exports = {
             signs: [
                 {
                     publicKey: Buffer.from("03950954c4c5cf11ee1e1f08269efe13dc6e3af754e082b539f5ad243781180002", 'hex'),
-                    signature: Buffer.from("00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000", 'hex'),
+                    signature: Buffer.from("03950954c4c5cf11ee1e1f08269efe13dc6e3af754e082b539f5ad24378118000203950954c4c5cf11ee1e1f08269efe13dc6e3af754e082b539f5ad24378118", 'hex'),
                 },
             ],
             message: "hardertodobetter",
@@ -281,7 +281,7 @@ module.exports = {
             signs: [
                 {                           
                     publicKey: Buffer.from("035f504327b0f9aea8350a588435179d5fa2310a3aca5aac964f9526f3c24f4587", 'hex'),
-                    signature: Buffer.from("00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000", 'hex'),
+                    signature: Buffer.from("035f504327b0f9aea8350a588435179d5fa2310a3aca5aac964f9526f3c24f4587035f504327b0f9aea8350a588435179d5fa2310a3aca5aac964f9526f3c24f", 'hex'),
                 },
             ],
             assets: [
@@ -307,7 +307,7 @@ module.exports = {
             signs: [
                 {
                     publicKey: Buffer.from("03e6db9b4eff99c9c0aac5b310a2477806b5c9329301ebce8538c6ae041145551e", 'hex'),
-                    signature: Buffer.from("00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000", 'hex'),
+                    signature: Buffer.from("03e6db9b4eff99c9c0aac5b310a2477806b5c9329301ebce8538c6ae041145551e03e6db9b4eff99c9c0aac5b310a2477806b5c9329301ebce8538c6ae041145", 'hex'),
                 },
             ],
             assets: [
@@ -330,9 +330,7 @@ module.exports = {
                     ]
                 },
             ],
-        },
-
-
+        }
     ]
 
 

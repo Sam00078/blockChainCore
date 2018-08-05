@@ -18,13 +18,13 @@ module.exports = app => {
             // 请求签名的地址列表
             this.requestSignAddressList = []
             // 数据格式验证器
-            this.paramate = null
+            this.parameta = null
         }
 
         // 添加数据格式验证器
         // app.
-        setParamate ( paramate ) {
-            this.paramate = paramate
+        setParameta ( parameta ) {
+            this.parameta = parameta
         }
 
         // 设置种类

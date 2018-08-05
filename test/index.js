@@ -3,25 +3,26 @@
  */
 
 
+const fs = require('fs')
+
 global.ASSERT = require('assert')
 global.EQUAL = ASSERT.strictEqual
 
 
-global.LOG = function(...param) {
+global.log = global.LOG = function(...param) {
     console.log(...param)
 }
 
 
 
-module.exports = async (app, tarmod) => {
+module.exports = async (app, tarmods) => {
 
 
-    const testmodels = tarmod || [
-        // 全部模块
+    const testmods = tarmods || [
+        // 指定优先加载的
         'account',
         'signature',
         'multisign_two',
-        'consensus',
     ]
 
 
@@ -30,12 +31,46 @@ module.exports = async (app, tarmod) => {
     /////////////// 加载测试 ///////////////
 
     app.launch.ready(async function(){
+        
+        let models = []
 
-        for(let i in testmodels){
+        // 读取本地所有测试文件
+        if( tarmods ){
 
-            let mod = testmodels[i]
+            models = testmods.map( (one) => {
+                return one + '.js'
+            })
+
+        }else{
+
+            let files = fs.readdirSync(__dirname)
+            // app.log.debug(files)
+            // 排序
+            models = testmods.map( (one) => {
+                let om = one + '.js'
+                , already = files.indexOf(om)
+                if ( already > -1 ) {
+                    files.splice(already, 1) // 删除重复的
+                }
+                return om
+            })
+
+            models = models.concat( files )
+        }
+
+        // app.log.fatal(models)
+
+
+        // 开始循环测试 所有 或 指定 测试文件
+        for(let i in models){
+
+            let mod = models[i]
+            if( mod=='index.js' ){
+                continue
+            }
+
+            // 开始
             let oktip
-
 
             try {
 

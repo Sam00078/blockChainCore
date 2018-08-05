@@ -4,10 +4,6 @@
 
 const CONSTANTS = require("../-constants")
 
-const secp256k1 = require('secp256k1')
-
-
-
 
 // console.log(bitcoin)
 
@@ -84,12 +80,6 @@ module.exports = app => {
         if ( pair.publicKeyStrList.indexOf(publicKeyStr) == -1 ) {
             return next( 'Prohibition of use of accounts' )
         }
-
-        // 开始签名/加密
-        let encode = secp256k1.ecdh()
-
-
-
 
 
 

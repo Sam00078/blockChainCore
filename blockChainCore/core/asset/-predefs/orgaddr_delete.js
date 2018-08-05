@@ -22,7 +22,7 @@ module.exports = app => {
     }
 
     // 定义 OrgElmForm 字段
-    app.core.bcc.paramate.definition('OrgElmFormDel', {
+    app.core.bcc.parameta.definition('OrgElmFormDel', {
         type: '{}',
         properties: {
 

@@ -4,9 +4,6 @@
 
 const CONSTANTS = require("../-constants")
 
-const secp256k1 = require('secp256k1')
-
-
 
 
 // console.log(bitcoin)

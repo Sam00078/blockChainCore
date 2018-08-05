@@ -1,14 +1,14 @@
 {
     "name": "blockChainCore",
     "dependencies": {
-        "bitcoinjs-lib": "3.3.2",
-        "secp256k1": "3.5.0"
+        "bitcoinjs-lib": "4.0.1",
+        "protocol-buffers": "4.0.4"
     },
     "okgo": {
         "load_order": {
             "core": [
                 "core",
-                "paramate/"
+                "parameta/"
             ],
             "init": [
                 "boot/",
