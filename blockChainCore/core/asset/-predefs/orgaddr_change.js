@@ -32,7 +32,7 @@ module.exports = app => {
             },
 
             "vote": {
-                type: 'Uint8',
+                type: 'UInt8',
                 minval: 1,
                 fixed: 2,
             },

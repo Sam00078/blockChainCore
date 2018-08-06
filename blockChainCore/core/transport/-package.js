@@ -22,46 +22,24 @@ module.exports = app => {
      * 使用 google protobuf 打包解包
      */
     let protobufSchema
-    async function getProtobufSchema () {
-        if( protobufSchema === true ){
-            return Promise((success) => {
-                let tout = setInterval(function(){
-                    if( protobufSchema !== true ){
-                        clearInterval(tout)
-                        success(protobufSchema)
-                    }
-                }, 50)
-            })
-        }else{
-            if( ! protobufSchema ){
-                protobufSchema === true
-                protobufSchema = protocolBuffers( await app.core.bcc.parameta.outputProtobuf3Configure() )
-                // app.log.debug( protobufSchema.Transaction )
-                // app.log.debug( util.inspect( protobufSchema, {depth: null} ) )
-            }
-            return protobufSchema
+    function getProtobufSchema () {
+        if( ! protobufSchema ){
+            protobufSchema = protocolBuffers(  app.core.bcc.parameta.outputProtobuf3Configure() )
         }
+        return protobufSchema
     }
 
 
 
     app.core.bcc.transport = Object.assign(app.core.bcc.transport, {
 
-        // 打包区块
-        async packBlock ( blockObject ) {
-            return app.core.bcc.help.returnAmtRunFlowPromise(this, 'transportPackBlock', {}, {blockObject})
+        // 数据打包
+        async packData ( schemaName, sourceObject ) {
+            return app.core.bcc.help.returnAmtRunFlowPromise(this, 'transportPackData', {}, {schemaName, sourceObject})
         },
-        // 区块解包
-        async unpackBlock ( blockBuffer ) {
-            return app.core.bcc.help.returnAmtRunFlowPromise(this, 'transportUnpackBlock', {}, {blockBuffer})
-        },
-        // 打包交易
-        async packTransaction ( transactionObject ) {
-            return app.core.bcc.help.returnAmtRunFlowPromise(this, 'transportPackTransaction', {}, {transactionObject})
-        },
-        // 交易解包
-        async unpackTransaction ( transactionBuffer ) {
-            return app.core.bcc.help.returnAmtRunFlowPromise(this, 'transportUnpackTransaction', {}, {transactionBuffer})
+        // 数据解包
+        async unpackData ( schemaName, machineBuffer ) {
+            return app.core.bcc.help.returnAmtRunFlowPromise(this, 'transportUnpackData', {}, {schemaName, machineBuffer})
         },
 
     })
@@ -77,14 +55,16 @@ module.exports = app => {
     /**
      * 打包区块
      */
-    app.core.bcc.transport.amt.it( CONSTANTS.amtfns['transportPackBlock'], {
+    app.core.bcc.transport.amt.it( CONSTANTS.amtfns['transportPackData'], {
         id: CONSTANTS.amtfnids.tribetrustUsed // id
     }, async function(argv, next){
-        // blockObject
+        // schemaName sourceObject
         try{
-            let machineObject = await app.core.bcc.parameta.processProtobuf3Pack(argv.blockObject)
-            // console.log( util.inspect( ttt, {depth: null} )  )
-            let buffer = (await getProtobufSchema()).Block.encode(machineObject)
+            let machineObject = app.core.bcc.parameta.processProtobuf3Pack(argv.sourceObject)
+            // console.log( util.inspect( argv.sourceObject, {depth: null} )  )
+            // console.log( util.inspect( machineObject, {depth: null} )  )
+            // console.log( getProtobufSchema() )
+            let buffer = getProtobufSchema()[argv.schemaName].encode(machineObject)
             // let buffer = messages.Block.encode(argv.blockObject)
             next(null, buffer)
         }catch(e){
@@ -96,13 +76,13 @@ module.exports = app => {
     /**
      * 区块解包
      */
-    app.core.bcc.transport.amt.it( CONSTANTS.amtfns['transportUnpackBlock'], {
+    app.core.bcc.transport.amt.it( CONSTANTS.amtfns['transportUnpackData'], {
         id: CONSTANTS.amtfnids.tribetrustUsed // id
     }, async function(argv, next){
-        // blockBuffer
+        // machineBuffer
         try{
-            let machineObject = (await getProtobufSchema()).Block.decode(argv.blockBuffer)
-            let sourceObject = await app.core.bcc.parameta.processProtobuf3Unpack(machineObject)
+            let machineObject = getProtobufSchema()[argv.schemaName].decode(argv.machineBuffer)
+            let sourceObject = app.core.bcc.parameta.processProtobuf3Unpack(machineObject)
             next(null, sourceObject)
         }catch(e){
             next(e)
@@ -110,38 +90,6 @@ module.exports = app => {
     })
 
 
-
-
-    /**
-     * 打包交易
-     */
-    app.core.bcc.transport.amt.it( CONSTANTS.amtfns['transportPackTransaction'], {
-        id: CONSTANTS.amtfnids.tribetrustUsed // id
-    }, async function(argv, next){
-        // transactionObject
-        try{
-            let buffer = (await getProtobufSchema()).Transaction.encode(argv.transactionObject)
-            next(null, buffer)
-        }catch(e){
-            next(e)
-        }
-    })
-
-
-    /**
-     * 交易解包
-     */
-    app.core.bcc.transport.amt.it( CONSTANTS.amtfns['transportUnpackTransaction'], {
-        id: CONSTANTS.amtfnids.tribetrustUsed // id
-    }, async function(argv, next){
-        // TransactionBuffer
-        try{
-            let dataobj = (await getProtobufSchema()).Transaction.decode(argv.TransactionBuffer)
-            next(null, dataobj)
-        }catch(e){
-            next(e)
-        }
-    })
 
 
 

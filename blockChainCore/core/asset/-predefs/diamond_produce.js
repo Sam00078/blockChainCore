@@ -18,7 +18,7 @@ module.exports = app => {
         },
 
         "nonce": {
-            type: 'Uint32',
+            type: 'UInt32',
             maxval: app.constant.bcc.core.uint32_max_value,
             fixed: 2,
         },

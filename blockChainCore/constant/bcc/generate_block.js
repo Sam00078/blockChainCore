@@ -270,7 +270,7 @@ module.exports = {
                 },
             ],
             message: "hardertodobetter",
-            nonce: 4294967295,
+            nonce: 1294967295,
             time: 0,
         },
         {

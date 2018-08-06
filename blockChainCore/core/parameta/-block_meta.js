@@ -19,13 +19,13 @@ module.exports = app => {
         properties: {
     
             "version": {
-                type: 'Uint8',
+                type: 'UInt8',
                 enumeration: [1], // 仅仅支持一个版本
                 fixed: 1,
             },
     
             "height": {
-                type: 'Uint32',
+                type: 'UInt32',
                 fixed: 2,
             },
     
@@ -54,9 +54,6 @@ module.exports = app => {
                 maxlen: 65535,
             }
         }
-    }, {
-        // 注册到
-        register: "TribeTrustChainBlock",
     })
 
 
@@ -64,13 +61,13 @@ module.exports = app => {
     const transaction_properties_boot = {
 
         "type": {
-            type: 'Uint8',
+            type: 'UInt8',
             enumeration: [0, 1], // 目前仅支持两种交易类型
             fixed: 1,
         },
 
         "time": {
-            type: 'Uint32',
+            type: 'UInt32',
             maxval: app.constant.bcc.core.uint32_max_value,
             fixed: 2,
         },
@@ -88,7 +85,7 @@ module.exports = app => {
     /**
      * 交易（coinbase）
      */
-    pm.definition('Transaction<type>', {
+    pm.definition('Transaction<type=0>', {
         type: '{}',
         fixed: 1,
         properties: Object.assign({
@@ -100,14 +97,12 @@ module.exports = app => {
             },
 
             "nonce": {
-                type: 'Uint32',
+                type: 'UInt32',
                 maxval: app.constant.bcc.core.uint32_max_value,
                 fixed: 12,
             },
 
         }, transaction_properties_boot)
-    }, {
-        union_mark_value: 0, // coinbase
     })
 
 
@@ -115,19 +110,19 @@ module.exports = app => {
     /**
      * 交易（normal）
      */
-    pm.definition('Transaction<type>', {
+    pm.definition('Transaction<type=1>', {
         type: '{}',
         fixed: 2,
         properties: Object.assign({
 
             "fee": {
-                type: 'Uint32',
+                type: 'UInt32',
                 maxval: app.constant.bcc.core.uint32_max_value,
                 fixed: 11,
             },
 
             "feeUnit": {
-                type: 'Uint8',
+                type: 'UInt8',
                 maxval: 255,
                 fixed: 12,
             },
@@ -142,7 +137,7 @@ module.exports = app => {
                     properties: {
 
                         "kind": {
-                            type: "Uint16",
+                            type: "UInt16",
                             minlen: 1,
                         }
 
@@ -151,8 +146,6 @@ module.exports = app => {
             },
 
         }, transaction_properties_boot)
-    }, {
-        union_mark_value: 1, // normal
     })
 
 
@@ -188,14 +181,14 @@ module.exports = app => {
         properties: {
 
             "amount": {
-                type: 'Uint32',
+                type: 'UInt32',
                 minval: 0,
                 maxval: app.constant.bcc.core.uint32_max_value,
                 fixed: 1,
             },
 
             "unit": {
-                type: 'Uint8',
+                type: 'UInt8',
                 minval: 0,
                 maxval: 255,
                 fixed: 2,
@@ -211,9 +204,10 @@ module.exports = app => {
      */
     pm.definition('Address', {
         type: 'String',
-        length: 34,
-        check_async: async function(stuff){
-            return await app.core.bcc.account.verifyAddressValid(stuff)
+        minlen: 33,
+        maxlen: 34,
+        check: function(stuff){
+            return app.core.bcc.account.verifyTribeTrustAddressValid(stuff)
         }
     })
 

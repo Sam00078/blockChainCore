@@ -13,7 +13,7 @@ module.exports = app => {
     const asset_properties = {
         
         "satisfyVoteRatio": {
-            type: 'Uint16',
+            type: 'UInt16',
             minval: 1,
             maxval: 10000,
             fixed: 1,

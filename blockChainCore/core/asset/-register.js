@@ -43,27 +43,15 @@ module.exports = app => {
 
         // 数据字段格式定义
         const parameta_item = {
-            type: '{}',
             properties: argv.parameta_properties,
             fixed: argv.kind_num,
         }
-        app.core.bcc.parameta.definition('Asset<kind>', parameta_item, {
-            union_mark_value: argv.kind_num, // 种类
-        })
-
-        //// 添加至 ////
-
-        let key = 't' + argv.kind_num
-
-        if( argv.self.typeHandles[ key ] ){
-            return next(`asset kind <${key}> already exist`)
-        }
+        app.core.bcc.parameta.definition(`Asset<kind=${argv.kind_num}>`, parameta_item)
 
         // 添加
         let handle = new argv.handle_class()
         handle.setKind(argv.kind_num, argv.kind_def_name)
         handle.setParameta(parameta_item)
-        argv.self.typeHandles[ key ] = handle
 
         // ok
         next(null, argv.self.typeHandles)
