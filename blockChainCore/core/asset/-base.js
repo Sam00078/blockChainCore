@@ -14,7 +14,6 @@ module.exports = app => {
         constructor()
         {
             this.kind = null
-            this.kind_def = null
             // 请求签名的地址列表
             this.requestSignAddressList = []
             // 数据格式验证器
@@ -28,12 +27,11 @@ module.exports = app => {
         }
 
         // 设置种类
-        setKind (kind, kind_def) {
+        setKind (kind) {
             if( ! (kind>=1&&kind<=65535) ){ // 资产类型格式不合法
                 throw new Error(`asset kind <${kind}> is not valid`)
             }
             this.kind = kind
-            this.kind_def = kind_def
         }
 
         // 添加 请求签名 的地址

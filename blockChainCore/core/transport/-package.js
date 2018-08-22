@@ -3,16 +3,12 @@
  */
 
 
+const util = require('util')
 
 const protocolBuffers = require('protocol-buffers')
-const util = require('util')
 
 
 const CONSTANTS = require("../-constants")
-
-
-
-var messages = require('../../messages.js')
 
 
 module.exports = app => {

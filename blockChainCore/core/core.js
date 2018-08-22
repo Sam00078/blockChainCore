@@ -55,12 +55,17 @@ module.exports = app => {
             self.amt.runFlow(CONSTANTS.amtfns[amtfn], opts, param, function(err, result) {
                 callback && callback(err, result)
                 if(err){
-                    return reject(err)
+                    return reject(err) // throw 错误
                 }
                 resolve(result)
             })
         })
     }
+
+
+
+
+    
 
 }
     

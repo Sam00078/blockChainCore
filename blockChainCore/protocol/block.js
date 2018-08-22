@@ -31,6 +31,9 @@ let example_block = {
     // 块签名
     // blockSignature: "89082f6a35e4ec15effa83bdb41d9756585098d898fe479fb580e976b595e0d57b1a89cde9e4e0daf4898abdb09e05c7ee26b057ac1125ca7fadb68a19ec8832",
 
+
+
+    
     // 包含的交易 列表
     transactions: [
         {

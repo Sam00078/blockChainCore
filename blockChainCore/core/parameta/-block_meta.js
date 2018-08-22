@@ -145,6 +145,13 @@ module.exports = app => {
                 },
             },
 
+            "address": {
+                type: 'Address',
+                given: "",
+                fixed: 14,
+                
+            }
+
         }, transaction_properties_boot)
     })
 

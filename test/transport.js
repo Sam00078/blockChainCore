@@ -32,10 +32,12 @@ module.exports = async app => {
     // LOG("\n" +  util.inspect( generate_block_unpack , { depth: null }))
 
     // 冲压成 buffer
-    let tinybuf = app.core.bcc.parameta.condenseToBuffer( 'Transaction<type>', generate_block.transactions[0] )
+    let tinybuf = app.core.bcc.parameta.condenseToBuffer( 'Block', generate_block )
     // LOG("\n" + tinybuf.toString('hex'))
     // LOG("\n" + tinybuf.toString('hex').substr(0, tinybuf.length))
 
+
+    // app.log.debug(app.core.bcc.parameta.getAllTypes() )
 
 
 }

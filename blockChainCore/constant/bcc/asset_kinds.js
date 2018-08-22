@@ -17,6 +17,8 @@ module.exports = {
     DATAHASH:        10,          // 数据 hash 32位哈希值
     DATANUMBER:      11,          // 数据 number int32数字
     DATASTRING:      12,          // 数据 string 字符串
+    DATABUFFER:      13,          // 数据 buffer 字节流
+    
 
 
 

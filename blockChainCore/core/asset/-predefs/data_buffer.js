@@ -1,5 +1,5 @@
 /**
- * asset type CHARGE 收款
+ * asset type DATABUFFER 
  */
 
 
@@ -9,19 +9,14 @@ module.exports = app => {
 
 
     // 资产类型
-    const asset_kind_def = 'CHARGE'
+    const asset_kind_def = 'DATABUFFER'
     const asset_properties = {
         
-        "address": {
-            type: 'Address',
-            fixed: 1,
-        },
-
-        "bills": {
-            type: '[Bill]',
+        "buffer": {
+            type: 'Buffer',
             minlen: 1,
-            maxlen: 255,
-            fixed: 2,
+            maxlen: 512,
+            fixed: 1,
         },
 
     }
@@ -31,7 +26,7 @@ module.exports = app => {
     class AssetHandle extends app.core.bcc.AssetBase
     {
         constructor () {
-            super( )
+            super()
         }
 
         
@@ -47,12 +42,16 @@ module.exports = app => {
 
 
 
+
     // 注册处理
     app.core.bcc.asset.registerTypeHandle(
         app.constant.bcc.asset_kinds[asset_kind_def], 
         asset_properties, 
         AssetHandle
     )
+
+
+
 
 
 

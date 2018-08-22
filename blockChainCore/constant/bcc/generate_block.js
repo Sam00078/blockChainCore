@@ -20,6 +20,8 @@ const PredefinitionBlockFormat = {
     mrklRoot: "000000000000000000000000000000000000", // string buffer
     //   4 byte, 0 ~ 4294967295 区块高度, 一分钟一个块可用8100年；一秒一个块可用135年    
     height: 0,
+    //   4 byte, 随机数（用于算力计算）
+    nonce: 4294967295,
 
 
     // 交易
@@ -43,8 +45,6 @@ const PredefinitionBlockFormat = {
             ],
             //  16 byte, 区块寄语（用空格补齐）
             message: "hardertodobetter", // string
-            //   4 byte, 随机数（）
-            nonce: 4294967295,
             //   4 byte, 区块开始挖掘的<bcc时间戳>（从创世到现在的秒数）
             time: 0,  // {不接受时间}
         },
@@ -209,9 +209,25 @@ const PredefinitionBlockFormat = {
                 },
                 {
                     kind: 12,
-                    // 256 byte max -变长字段-, 申明的文本明文（UTF8编码），最长支持 256 byte
+                    // 512 byte max -变长字段-, 申明的文本明文（UTF8编码），最长支持 512 byte
                     string: "asda sdaggh fghdf hfgh 23556 df", // string
                 },
+                {
+                    kind: 13,
+                    // 512 byte max -变长字段-, buffer数据
+                    buffer: "03950954c4c5cf11ee1e1f08269efe13dc6e3af754e082b539f5ad243781180003950954c4c5cf11ee1e1f08269efe13dc6e3af754e082b539f5ad243781180003950954c4c5cf11ee1e1f08269efe13dc6e3af754e082b539f5ad243781180003950954c4c5cf11ee1e1f08269efe13dc6e3af754e082b539f5ad2437811800", // buffer
+                },
+
+                /////////////////  利益分配  /////////////////
+
+                {
+                    // 分红（将金额按vote比例分配给成员账户）
+                    kind: 14,
+                    bills: [{
+                        amount: 1,
+                        unit: 8,
+                    }], 
+                }
                 
 
 
@@ -239,13 +255,10 @@ const PredefinitionBlockFormat = {
 
 
 
-
-
-
 /**********************************************************************/
 
 
-
+// console.log( "03950954c4c5cf11ee1e1f08269efe13dc6e3af754e082b539f5ad243781180003950954c4c5cf11ee1e1f08269efe13dc6e3af754e082b539f5ad243781180003950954c4c5cf11ee1e1f08269efe13dc6e3af754e082b539f5ad243781180003950954c4c5cf11ee1e1f08269efe13dc6e3af754e082b539f5ad243781180003950954c4c5cf11ee1e1f08269efe13dc6e3af754e082b539f5ad243781180003950954c4c5cf11ee1e1f08269efe13dc6e3af754e082b539f5ad243781180003950954c4c5cf11ee1e1f08269efe13dc6e3af754e082b539f5ad243781180003950954c4c5cf11ee1e1f08269efe13dc6e3af754e082b539f5ad2437811800".length )
 
 
 

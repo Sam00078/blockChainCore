@@ -66,7 +66,6 @@ module.exports = app => {
     // 注册处理
     app.core.bcc.asset.registerTypeHandle(
         app.constant.bcc.asset_kinds[asset_kind_def], 
-        asset_kind_def, 
         asset_properties, 
         AssetHandle
     )
